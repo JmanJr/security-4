@@ -1,14 +1,14 @@
 ###############################################################################
 Team Name, Names of all members, eids, role titles
 ###############################################################################
-  julian moore (jrm7458) web developer and github admin
-  ryan morris (BKL: put uteid) challenge researcher
-  bryan lee (bkl243) challenge researcher
+  julian moore (jrm7458) world maker (web developer)
+  ryan morris (UTEID) lore master (challenge researcher)
+  bryan lee (bkl243) lore master (challenge researcher)
 
 ###############################################################################
 Provide a title for your project
 ###############################################################################
-  BKL: needs a title
+  The Lord of the (st)Rings
 
 ###############################################################################
 Provide a “brief” description of your project (and scope)
