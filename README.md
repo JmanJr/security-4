@@ -1,8 +1,8 @@
-###############################################################################
+##############################################################################
 Team Name, Names of all members, eids, role titles
 ###############################################################################
   julian moore (jrm7458) world maker (web developer)
-  ryan morris (UTEID) lore master (challenge researcher)
+  ryan morris ( UTEID ) lore master (challenge researcher)
   bryan lee (bkl243) lore master (challenge researcher)
 
 ###############################################################################
