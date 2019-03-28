@@ -1,0 +1,6 @@
+# generic starting point for good links
+https://resources.infosecinstitute.com/tools-of-trade-and-resources-to-prepare-in-a-hacker-ctf-competition-or-challenge/#gref
+
+# good ctf tutorial
+https://github.com/apsdehal/awesome-ctf
+
