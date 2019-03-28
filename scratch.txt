@@ -4,3 +4,11 @@ https://resources.infosecinstitute.com/tools-of-trade-and-resources-to-prepare-i
 # good ctf tutorial
 https://github.com/apsdehal/awesome-ctf
 
+# utisss github
+https://github.com/UTISSS/ctf
+
+#ctfd 
+https://github.com/CTFd/CTFd
+
+# youtube help us: this guys channel actually has a few helpful videos
+https://www.youtube.com/watch?v=b1KdAVFAqio
