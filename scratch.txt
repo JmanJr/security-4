@@ -13,3 +13,6 @@ https://github.com/CTFd/CTFd
 
 # youtube help us: this guys channel actually has a few helpful videos
 https://www.youtube.com/watch?v=b1KdAVFAqio
+
+OUR CTFd:
+http://34.73.242.36/setup
