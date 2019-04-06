@@ -1,0 +1,40 @@
+############# Team Name, Names of all members, eids, role titles #############
+julian moore (jrm7458) world maker (web developer)
+ryan morris ( em37523 ) lore master (challenge researcher)
+bryan lee (bkl243) lore master (challenge researcher)
+
+
+########## Provide a "brief" description of your project (and scope) ##########
+We are creating a Lord of the Rings-themed CTF competition as practice for
+the class. We plan to cover a few beginner level CTF problems types, including
+cryptography, steganography, and web exploits. Participants will need to use a
+variety of tools and skills to finish. We will be determining the exact set
+of problems at our upcoming meeting. We plan to tie the problems into the plot
+of either The Hobbit or Lord of the Rings to make it more enjoyable and cohesive.
+
+########################### Project Progress/status ###########################
+We implemented a CTFd site and explored some of its functionality. CTFd allows
+for "hidden" challenges that depend on solving other challenges, so we can
+create a progressive challenge.
+
+We explored how to set up SQL and pwnable/binary style challenges.
+
+################# Updated/marked timeline/project plan/chart #################
+Completed:
+Determine framework and research how to create a CTF challenge.
+CTF overview meeting to discuss range/difficulty/number of questions.
+Finishing touches and setting up CTFd platform.
+
+On-going:
+Challenge research and writeups. (4/05-4/13)
+Completing writeups for all problems. (4/05-4/13)
+
+Future:
+Publishing CTF for the class. (4/14)
+
+
+##### Any changes since proposal (and how those change the project/scope) #####
+We scaled back on the variety of challenge difficulty because the difficulty
+in programing/implementing and solving.
+
+The project is now a beginners CTF.
