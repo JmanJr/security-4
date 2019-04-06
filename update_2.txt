@@ -8,8 +8,7 @@ bryan lee (bkl243) lore master (challenge researcher)
 We are creating a Lord of the Rings-themed CTF competition as practice for
 the class. We plan to cover a few beginner level CTF problems types, including
 cryptography, steganography, and web exploits. Participants will need to use a
-variety of tools and skills to finish. We will be determining the exact set
-of problems at our upcoming meeting. We plan to tie the problems into the plot
+variety of tools and skills to finish. We plan to tie the problems into the plot
 of either The Hobbit or Lord of the Rings to make it more enjoyable and cohesive.
 
 ########################### Project Progress/status ###########################
