@@ -30,7 +30,7 @@ Challenge research and writeups. (4/05-4/13)
 Completing writeups for all problems. (4/05-4/13)
 
 Future:
-Publishing CTF for the class. (4/14)
+Submit. (4/14)
 
 
 ##### Any changes since proposal (and how those change the project/scope) #####
