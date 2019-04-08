@@ -15,7 +15,7 @@ https://github.com/CTFd/CTFd
 https://www.youtube.com/watch?v=b1KdAVFAqio
 
 OUR CTFd:
-http://34.66.235.224:8000/setup
+http://34.66.235.224:8000
 Email: scrtyassignmentfour@gmail.com
 Admin Username: Gandalf
 PW for both: G@nd@1f420
