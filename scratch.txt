@@ -19,3 +19,6 @@ http://34.66.235.224:8000
 Email: scrtyassignmentfour@gmail.com
 Admin Username: Gandalf
 PW for both: G@nd@1f420
+
+# docker sql challenges
+https://github.com/Corb3nik/SQLi-CTF
