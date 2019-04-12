@@ -9,7 +9,8 @@ Explanation:-------------------------------------------------------------------
 
   Vulnerable code:
     if (isset($_POST['session_id'])) {
-        $query = "SELECT * FROM secrets WHERE session_id = '" . $_POST['session_id'] . "'";
+        $query = "SELECT * FROM secrets WHERE session_id = '
+            " . $_POST['session_id'] . "'";
         $result = $conn->query($query);
     }
 
@@ -19,15 +20,44 @@ Solution:----------------------------------------------------------------------
 ###############################################################################
 Level 2
 ###############################################################################
-Explanation:
-  This is classic SQL injection where you can directly manipulate the query
-  through the text entry field. Prepared statements are not used.
+Explanation:-------------------------------------------------------------------
+  This time they use prepared statements. We need to find a way to break this.
+  So we just need to craft something that 'fits'. We just need to make the
+  following statment return true:
+    $query = $conn->prepare($query);
+  We just get free access even without the proper password. If the query 
+  returns anything not NULL, then we just pass this if statement as the 
+  administrator.
 
   Vulnerable code:
-    if (isset($_POST['session_id'])) {
-        $query = "SELECT * FROM secrets WHERE session_id = '" . $_POST['session_id'] . "'";
-        $result = $conn->query($query);
+    $query = $conn->prepare($query); 
+
+    // If query is invalid
+    if ($query === false) {
+        $error = true;
+        $error_msg = "<strong>Error!</strong> Invalid SQL query";    
+    } else {
+
+    // Bind password param
+    $query->bind_param("s", $_POST['password']);
+    $query->execute();
+    $query->bind_result($user);
+    $query->fetch();
+
+        // Check if a valid user has been found
+        if ($user != NULL) {
+            session_start();
+            $_SESSION['is_logged_in'] = true;
+            $_SESSION['username'] = $user;
+        } else {
+            $error = true;
+            $error_msg = "<strong>Wrong!</strong> Username/Password is invalid.";
+        }
     }
 
-Solution:
-  ' OR session_id LIKE "%a%
+Solution:----------------------------------------------------------------------
+  administrator' OR '1
+
+###############################################################################
+Level 3
+###############################################################################
