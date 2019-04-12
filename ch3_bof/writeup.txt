@@ -1,0 +1,45 @@
+## Writeup for the buffer overflow challenge ##
+
+When running the program on the server over port 1337
+with netcat, the participant is prompted by Gandalf
+to guess their destination. The program is compiled
+with the flag -fno-stack-protector and uses the
+unsafe gets() function, so a buffer overflow is
+possible. Once the participant tries an input that is
+too large, there is a segmentation fault.
+
+The greetings.elf file is provided for download.
+Running "strings greetings.elf" provides a few clues:
+-The call to gets() is visible, so the participant
+can determine there is an unsafe function if they have
+not already created a segmentation fault
+-"hello" and "secret" appear, which can be inferred
+to be function names, or found to be function names
+later by opening greetings.elf in GDB
+-The participant will be told, "Well, that seems about
+right," before the contents of the flag file are printed
+on the server
+
+Now the participant knows the greetings.elf file can be
+explored locally to figure out how to exploit the buffer
+and will get feedback when they have succeeded. Then,
+they can provide the same input over netcat and read the
+contents of the flag file on the server.
+
+The participant can open greetings.elf in GDB and drop a
+breakpoint on secret to find its address. The function
+address will be used to overwrite the return address on
+the stack. The participant can use a Python command to
+try different input lengths, followed by the address
+converted from hex to ASCII. The program will jump into
+secret() with the following input structure (with a
+different hex address):
+
+./greetings.elf <<< $(python -c "print('a'*40 + '\x55\x55
+\x55\...')")
+
+The participant can then test this input on the server:
+
+nc 34.66.235.224 1337 <<< $(python -c ...)
+
+This will successfully execute the call system("cat flag").

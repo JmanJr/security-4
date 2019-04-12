@@ -2,7 +2,7 @@
 
 void secret() {
   puts("Well, that seems about right!\n");
-  system("/bin/bash");
+  system("cat flag");
 }
 
 void hello() {
