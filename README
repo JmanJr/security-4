@@ -1,4 +1,6 @@
-##############################################################################
+###############################################################################
+Final Project Report Document
+###############################################################################
 Team Name, Names of all members, eids, role titles
 ###############################################################################
   julian moore (jrm7458) world maker (web developer)
@@ -8,32 +10,80 @@ Team Name, Names of all members, eids, role titles
 ###############################################################################
 Provide a title for your project
 ###############################################################################
-  The Lord of the (st)Rings
+  The Lord of the (St)Rings
   http://34.66.235.224:8000
+  https://github.com/JmanJr/security-4
 
 ###############################################################################
-Provide a “brief” description of your project (and scope)
+Provide a detailed description of your project and scope
 ###############################################################################
   A project suggestion was to 'Create software or game to teach people about a 
   computer security topic'. We decided to create a CTF competition so that
   people beginning to do CTF could have a good resource for practice and
-  familiarization with the format.
+  familiarization with the format. This was also done as practice for ourselves
+  in gaining familiarity with CTF competitions. We covered several topics that
+  require a variety of tools and skills.
 
-  Project scope will include setting up a challenge and providing writeups
-  for every challenge.
-
-  Also, this will be available to the class as extra practice for the final.
+  We used the CTFd framework to set up our CTF and included four challenges:
+    "the journey begins" - a buffer overflow challenge (created by Ryan)
+    "gandalf's research" - a packet capture forensics challenge (created by Bryan)
+    "sql challenge" - a medley of SQL injection problems (created by Bryan)
+    "an old map" - a multi-part challenge involving steganography and several
+      cryptography steps (created by Julian)
+  
+  We looked at previous CTF events (cited below) for inspiration and for help
+  in learning how to write these types of challenges. We also wrote writeups
+  for each challenge explaining how to solve them.
+  
+  Our CTF challenge loosely follows the plot of The Hobbit by J.R.R. Tolkien
+  to make it more enjoyable and cohesive.
+  
+###############################################################################
+Project progress/status
+###############################################################################
+We set up our CTFd site and hosted all necessary content on the server so that
+the challenges are accessible to participants. We completed writeups for every
+challenge and added them to the Github for referencing.
 
 ###############################################################################
-Provide a timeline and/or project breakdown (could be by parts or logical steps/
-task — whatever makes sense for your project)
+Marked timeline/project plan/chart
 ###############################################################################
-  General Timeline:
-    Determine framework and research how to create a CTF challenge. (3/30)
-    CTF overview meeting to determine range/difficulty/number of questions. (4/1)
-    Challenge research and writeups. (4/1 - 4/14)
-    Publishing CTF for the class. (4/14)
+Completed:
+  Determine framework and research how to create a CTF challenge. (3/30)
+  CTF overview meeting to discuss range/difficulty/number of questions. (4/01)
+  Setting up CTFd platform. (4/04)
+  Challenge research. (4/05-4/13)
+  Completing writeups for all problems. (4/11-4/13)
+  Finishing touches. (4/13-4/14)
+  Submit. (4/14)
+    
+###############################################################################
+Reasoning for any changes to project plan (additions/subtractions/substitutions)
+and how that did or did not change project scope
+###############################################################################
+We scaled back the variety of challenge difficulties due to the difficulty in
+implementing and solving higher-level challenges. We rearranged certain tasks
+while completing the project (specifically, we set up the server and CTFd
+platform early so that we could test certain things on it and familiarize
+ourselves with it). We decided to not release the challenge to the class.
 
+###############################################################################
+Discussion of teamwork (who did what, how did you function as a team, etc)
+###############################################################################
+Each team member wrote 1-2 challenges for the CTF and the accompanying writeup(s),
+as noted above. The team communicated over email, Google Hangouts, and through
+Github Issues. Bryan set up the server for us and moved challenges onto it.
+
+###############################################################################
+User manual/instructions/directions (written for your project audience)
+###############################################################################
+The CTF challenge is accessible at http://34.66.235.224:8000. All needed
+directions for participants are included on the site. Writeups for each
+challenge are publicly accessible at https://github.com/JmanJr/security-4.
+
+###############################################################################
+Other information from proposal
+###############################################################################
   Decide how you plan to “share” project files/resources/etc:
     We plan to collaborate using github. A challenge and its associated writeup
     be available on a public repository.
@@ -54,7 +104,6 @@ task — whatever makes sense for your project)
     to a value of 10 USD per member of the group.
   
     If the person fails to show up for class, this punishment is carried over.
-
 
 ###############################################################################
 SOURCES
