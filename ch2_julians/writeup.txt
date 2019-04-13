@@ -1,0 +1,14 @@
+  The start to the challenge is just a downloaded .jpg file. By running it through a steganographic decoder, 
+a message is revealed that is part encrypted and part plaintext.
+
+  By looking at the plaintext (which contains the number 64) and viewing the contents of the encrypted text 
+(containing chars like '='), you can conclude that the encrypted message is in Base64. By running the encrypted 
+message through a Base64 decoder, another encoded message appears.
+
+  This message has punctuation which appears to follow English sentence structure, hinting that the encryption technique 
+does not affect punctuation and is a replacement encryption algorithm. By testing a few types, it can be found to be a Caesar Cipher. 
+Another English message is shown, with two lines of encrypted text.
+
+  By taking the clue from the message (the reuse of the word pad), and the hint that the two lines are two seperate messages, 
+you can infer that the encryption scheme is a reused pad. By cracking using crib dragging on the two messages, you 
+can find the key used to be ONE_RING_BAD_LOL. This is the flag, in the format lotrflag{ONE_RING_BAD_LOL}.
