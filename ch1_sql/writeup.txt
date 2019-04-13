@@ -23,7 +23,7 @@ Level 2
 Explanation:-------------------------------------------------------------------
   This time they use prepared statements. We need to find a way to break this.
   So we just need to craft something that 'fits'. We just need to make the
-  following statment return true:
+  following statement return true:
     $query = $conn->prepare($query);
   We just get free access even without the proper password. If the query 
   returns anything not NULL, then we just pass this if statement as the 
@@ -89,3 +89,32 @@ Level 3
 Solution:----------------------------------------------------------------------
   greatest%' UNunionION (SEselectLECT users.username, users.password,3 FROM 
     users);-- %';
+
+###############################################################################
+Level 4
+##############################################################################
+  They tried to protect against us by adding more filters rather than
+  commenting out malicious sql keywords:
+
+    // Remove all banned characters
+    foreach ($filter as $banned) {
+        if (strpos($_GET['q'], $banned) !== false) die("Hacker detected"); 
+        if (strpos($_GET['q'], strtolower($banned)) !== false) die("Hacker detected"); 
+    } 
+  
+  These checks are not robust. The first one checks the raw string to see if
+  it equals the banned words:
+
+     $filter = array('UNION', 'SELECT');
+
+  The second checks to see if where are using lowercase versions. This is bad
+  though because we can use mixed case to bypass these and inject SQL (using
+  UniON and SElect).
+
+Solution:----------------------------------------------------------------------
+  greatest%' UniON (SElect users.username, users.password,3 FROM  users);-- 
+      %';
+
+###############################################################################
+Level 5
+##############################################################################
