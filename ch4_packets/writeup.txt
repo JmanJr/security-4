@@ -1,0 +1,8 @@
+  Upon downloading the file, it is shown to be a .pcap (a packet capture file). In order to inspect the packets captured, wireshark 
+can be used to view them in more detail.
+  Upon opening the .pcap with wireshark, the traffic can be viewed in more detail. By going through the packets, you can eventually view an 
+message asking for a key. The next message that contains human readable content contains the key. Another message says to wait for
+a file transfer, and then eventually you can see a data transfer containing flag.txt.
+  You can export the contents of the message containing the key, and the data transfer message. The message containing the key is 
+just an ASCII file containing the raw text for the key. The second is a zip that contains flag.txt. The flag.txt file cannot be unzipped 
+without a password, which is just the key from the first file. Flag.txt contains the flag.
