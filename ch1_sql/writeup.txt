@@ -5,47 +5,53 @@ Level 1
 ###############################################################################
 Explanation:-------------------------------------------------------------------
   This is classic SQL injection where you can directly manipulate the query
-  through the text entry field. Prepared statements are not used.
+  through the text entry field. Vulnerable code:
 
-  Vulnerable code:
     if (isset($_POST['session_id'])) {
         $query = "SELECT * FROM secrets WHERE session_id = '
             " . $_POST['session_id'] . "'";
         $result = $conn->query($query);
     }
 
+  We want results from more than just session_id = <fixed value>, so we just
+  break out of that query with a ' and OR with something that gets more results.
+
 Solution:----------------------------------------------------------------------
-  ' OR session_id LIKE "%a%
+  ' OR session_id LIKE '%%
 
 ###############################################################################
 Level 2
 ###############################################################################
 Explanation:-------------------------------------------------------------------
-  This time they use prepared statements. We need to find a way to break this.
-  So we just need to craft something that 'fits'. We just need to make the
-  following statement return true:
-    $query = $conn->prepare($query);
-  We just get free access even without the proper password. If the query 
-  returns anything not NULL, then we just pass this if statement as the 
-  administrator.
+  This time they say they used prepared statements. This is true for the
+  password part, but we can control username:
+    
+    $query = "SELECT username FROM users where username = '" . $_POST['username
+      '] . "' and password = ?";
+  
+  For this example, it is important to know that and has higher precedence
+  than or, so we can use this fact to manipulate results and return the
+  administrator. When we do this, query will actually return the admininstrtor
+  row/info and we will login as the admin.
 
-  Vulnerable code:
-    $query = $conn->prepare($query); 
+    $query = $conn->prepare($query); <----- CRAFT MALICIOUS SQL TO PASS THIS
+                                              TRIAL AND ERROR
 
     // If query is invalid
     if ($query === false) {
         $error = true;
         $error_msg = "<strong>Error!</strong> Invalid SQL query";    
-    } else {
+    } else { 
 
     // Bind password param
     $query->bind_param("s", $_POST['password']);
     $query->execute();
-    $query->bind_result($user);
+    $query->bind_result($user); <----- AND/OR PRECEDENCE RULES ALLOW
+                                        US TO BIND ADMINISTRATOR TO USER
     $query->fetch();
 
         // Check if a valid user has been found
-        if ($user != NULL) {
+        if ($user != NULL) { `
             session_start();
             $_SESSION['is_logged_in'] = true;
             $_SESSION['username'] = $user;
@@ -54,7 +60,7 @@ Explanation:-------------------------------------------------------------------
             $error_msg = "<strong>Wrong!</strong> Username/Password is invalid.";
         }
     }
-
+  
 Solution:----------------------------------------------------------------------
   administrator' OR '1
 
