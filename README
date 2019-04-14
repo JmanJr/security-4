@@ -26,10 +26,10 @@ Provide a detailed description of your project and scope
 
   We used the CTFd framework to set up our CTF and included four challenges:
     "the journey begins" - a buffer overflow challenge (created by Ryan)
-    "gandalf's research" - a packet capture forensics challenge (created by Julian)
+    "an old map" - a packet capture forensics challenge (created by Bryan)
     "gollums website" - a medley of SQL injection problems (created by Bryan)
-    "an old map" - a multi-part challenge involving steganography and several
-      cryptography steps (created by Bryan)
+    "gandalfs research" - a multi-part challenge involving steganography and several
+      cryptography steps (created by Julian)
   
   We looked at previous CTF events (cited below) for inspiration and for help
   in learning how to write these types of challenges. We also wrote writeups
